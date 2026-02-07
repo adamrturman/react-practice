@@ -4,11 +4,13 @@ import Counter from './Counter';
 import DebouncedInput from './DebouncedInput';
 import BigList from './BigList';
 import ListWithProps from './ListWithProps';
+import ThemeSwitcher from './ThemeSwitcher';
 
 function App() {
   return (
     <>
-      <ListWithProps />
+      <ThemeSwitcher />
+      {/*<ListWithProps />*/}
       {/*<BigList />*/}
       {/*<DebouncedInput />*/}
       {/*<Counter/>*/}
