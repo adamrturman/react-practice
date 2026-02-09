@@ -5,11 +5,15 @@ import DebouncedInput from './DebouncedInput';
 import BigList from './BigList';
 import ListWithProps from './ListWithProps';
 import ThemeSwitcher from './ThemeSwitcher';
+import Search from './Search';
+import Todo from './Todo';
 
 function App() {
   return (
     <>
-      <ThemeSwitcher />
+      <Todo />
+      {/*<Search />*/}
+      {/*<ThemeSwitcher />*/}
       {/*<ListWithProps />*/}
       {/*<BigList />*/}
       {/*<DebouncedInput />*/}
