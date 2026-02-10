@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import MemoizeJoke from './JokeItem';
 
 interface IJoke {
@@ -10,6 +10,7 @@ interface IJoke {
 export default function Joke() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [jokeList, setJokeList] = useState<Array<IJoke>>([]);
+  const isThrottledRef = useRef(false);
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -18,7 +19,7 @@ export default function Joke() {
   const fetchJoke = async () => {
     try {
       const response = await fetch('https://official-joke-api.appspot.com/random_joke');
-      const data = await  response.json();
+      const data = await response.json();
       const jokeToAdd: IJoke = {
         id: crypto.randomUUID(),
         setup: data.setup,
@@ -29,6 +30,24 @@ export default function Joke() {
       console.error('oops')
     }
   }
+
+  const handleClick = async () => {
+    //  only proceed if not throttled
+    if (!isThrottledRef.current) {
+      //  set the flag
+      isThrottledRef.current = true;
+
+      try {
+      await fetchJoke();
+      //  when the promise finishes resolving, then start the one second throttle
+      } finally {
+        setTimeout(() => {
+          isThrottledRef.current = false;
+        }, 1000);
+      }
+    }
+  };
+
 
   const displayedJokes = jokeList.map(joke => {
       return (
@@ -51,7 +70,7 @@ export default function Joke() {
     <div style={styles}>
       <h1>Jokes</h1>
       <button onClick={toggleDarkMode}>Toggle theme</button>
-      <button onClick={fetchJoke}>Fetch joke</button>
+      <button onClick={handleClick}>Fetch joke</button>
       {jokeList.length > 0 && displayedJokes}
     </div>
   );
