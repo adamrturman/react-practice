@@ -66,8 +66,6 @@ export default function Todo() {
     setList(updatedTodos);
   }
 
-
-
   const displayedList = list.map(item => {
     return (
       <Fragment key={item.id}>

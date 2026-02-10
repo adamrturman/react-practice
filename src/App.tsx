@@ -7,11 +7,13 @@ import ListWithProps from './ListWithProps';
 import ThemeSwitcher from './ThemeSwitcher';
 import Search from './Search';
 import Todo from './Todo';
+import Joke from './Joke';
 
 function App() {
   return (
     <>
-      <Todo />
+      <Joke />
+      {/*<Todo />*/}
       {/*<Search />*/}
       {/*<ThemeSwitcher />*/}
       {/*<ListWithProps />*/}
