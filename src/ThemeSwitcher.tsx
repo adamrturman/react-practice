@@ -25,9 +25,9 @@ export default function ThemeSwitcher() {
 
 
   return (
-    <div style={{'backgroundColor': isDarkTheme ? 'black' : 'white', 'height': '90vh', 'width': '90vw'}}>
+    <div style={{ 'backgroundColor': isDarkTheme ? 'black' : 'white', 'height': '90vh', 'width': '90vw' }}>
       <button onClick={toggleTheme}>Toggle theme</button>
-      <FibButton onClick={incrementFibonacci} />
+      <FibButton onClick={incrementFibonacci}/>
       <p>{fib.current}</p>
     </div>
   );
